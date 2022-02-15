@@ -1,0 +1,115 @@
+2021.12.18
+
+password 
+310595054
+
+===========
+PyQt6
+https://www.pythonguis.com/pyqt6-tutorial/
+
+
+===========
+How to find USB port for Alicat
+
+**** Linux
+Default port is port='/dev/ttyUSB0'
+In terminal type
+picarro@1022:~/Documents/MFC39$ ls /dev/ttyUSB*
+/dev/ttyUSB0
+
+**** Windows
+Device manager -> Ports (COM & LPT) -> USB Serial Port (COM4)
+
+**** Mac
+In terminal type:
+(base) yshi@scl-yshi-mbp ~ % ls /dev/tty.*
+/dev/tty.BLTH				/dev/tty.BoseAE2SoundLink
+/dev/tty.Bluetooth-Incoming-Port	        /dev/tty.usbserial-A908UXOQ
+
+******* Do this in Python for all 3: ********
+>>> Python
+import serial.tools.list_ports as ls
+print([p.device for p in ls.comports()])
+
+
+*** Windows
+>>> Python output
+['COM3', 'COM4']
+>>> Python
+flow_controller1 = FlowController(port='COM4', address='A')
+
+*** Linux
+>>> Python output
+['/dev/ttyS6', '/dev/ttyS5', '/dev/ttyS4', '/dev/ttyS3', '/dev/ttyS2', '/dev/ttyS1', '/dev/ttyS0', '/dev/ttyUSB0']
+>>> Python
+# flow_controller1 = FlowController(address = 'A')   #port='/dev/ttyUSB0',
+
+*** Mac
+>>> Python output
+['/dev/cu.BLTH', '/dev/cu.BoseAE2SoundLink', '/dev/cu.Bluetooth-Incoming-Port', '/dev/cu.usbserial-A908UXOQ']
+>>> Python
+flow_controller1 = FlowController(port='/dev/tty.usbserial-A908UXOQ', address='A')
+
+
+======== Backdoor by Tze ========
+1. Install Pyro4
+2. Need file 'CmdFIFO_py3.py'
+3. Match Pickle protocol
+venv has pickle5, vm has pickle2
+(## to see your pickle version:
+ >>> print(Pyro4.config.PICKLE_PROTOCOL_VERSION)    )
+how to: read document and find the function
+https://pyro4.readthedocs.io/en/stable/config.html
+
+go and revise code 'CmdFIFO_py3.py', line 64 add:
+Pyro4.config.PICKLE_PROTOCOL_VERSION = 2
+4. Supply port and url (URL) 
+port = 50070
+url = 'http://10.100.4.20'    ## URL (web address)
+# url = 'http://1022.corp.picarro.com'  ##works too
+
+
+=========Data manager listener by Tze =======
+1. Need 3 files
+    Broadcaster_py3.py
+    Listener_py3
+    StringPickler_py3
+2. Port number is 40060
+3. Run on analyzer use localhost as host name
+4. To run on another computer:
+  (1) Find IP address of analyzer:
+    in linux terminal type:
+$ (p1022) picarro@1022:~/Documents/pq5$ hostname -I
+10.100.4.20 172.17.0.1 
+    10.100.4.20 is needed. The other does not work
+  (2) Revise Listener_py3.py so it can take host as the input argument
+  (3) in your script supply host (IP address) and port values
+5. Tze recommended adding timeout function so it won't wait forever if no data coming
+
+
+
+
+
+
+
+
+
+
+=============
+
+Qt
+https://www.pythonguis.com/pyside6-tutorial/
+
+Please find the Jfrog Artifactory repo credentials for your ready reference , please  keep the password in your local file system as once you see the password from below  link, next time you try to see your password may not be available in the link. To login to the artifactory, VPN is not mandatory.
+ 
+1)Username= picaro- yshi
+2)Password= https://onetimesecret.com/secret/f8h2b1pjhj8bhb6zzaogut79w5ubd2y
+3) Artifactory URL = https://picarro.jfrog.io/ui/login
+
+picarro-yshi
+58ngZ[2@m%
+
+
+
+
+
