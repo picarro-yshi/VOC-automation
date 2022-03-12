@@ -1,0 +1,56 @@
+{
+ "admin": {
+  "DB_name": "PicarroCompoundLibrary", 
+  "DB_path": "/usr/bin/mongo",
+  "DB_host": "localhost"
+ }, 
+ "pubChem": {
+  "name": "pubChemEntries", 
+  "download2DImage": false, 
+  "active": true, 
+  "getAdditionalInfo": false, 
+  "mode": 4
+ }, 
+ "hitranAdmin": {
+  "active": true, 
+  "name": "HitranAdmin", 
+  "mode": 1,
+  "script1": "HitranAdmin.json"
+ }, 
+ "hitranPeaks": {
+  "active": true,
+  "name": "HitranPeaks",
+  "mode": 1
+ }, 
+ "hitranMolecules": {
+  "active": true, 
+  "name": "HitranMolecules", 
+  "mode": 4
+ },
+ "picarroPeaks": {
+  "active": true, 
+  "name": "PicarroPeaks", 
+  "mode": 1
+ },
+ "peakOverlays": {
+  "active": true, 
+  "name": "PeakOverlays", 
+  "mode": 1
+ },
+ "compoundOverlays": {
+  "active": true, 
+  "name": "CompoundOverlays", 
+  "mode": 1
+ },
+ "generalOverlays": {
+  "active": true, 
+  "name": "GeneralOverlays", 
+  "mode": 1
+ },
+ "empiricalSpectra": {
+  "active": true, 
+  "name": "EmpiricalSpectra", 
+  "mode": 1
+ }
+}
+
