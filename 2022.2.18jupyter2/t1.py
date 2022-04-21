@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import time
 import datetime
-
+import os
 # #x = np.arange(10)
 # x = [5, 6, 7, 8, 9, 10, 12, 13, 14, 16]
 # # y = [1, 2, 2, 3, 5, 6, 8, 9, 10, 12]
@@ -63,11 +63,22 @@ import datetime
 # a3 = k[12:14]
 # print('start at %s:%s! Wait until %s:%s to add sample'%(ta2, ta3, a2, a3))
 
-l1=[2, 4, 6, 7, 7, 8]
-zero1= np.mean(l1)
-print(zero1)
-print("hello %.2f"%(zero1))
+# l1=[2, 4, 6, 7, 7, 8]
+# zero1= np.mean(l1)
+# print(zero1)
+# print("hello %.2f"%(zero1))
 
+xtruc = [2, 3, 4, 5, 6, 7]
+ytruc = [2, 3, 6, 8, 11, 12]
+x_t =    ['a', 'b', 'c', 'd', 'e', 'f']
+# xloc = [0, 2, 5]
+xloc = [2, 4, 7]
+xmak = ['aa', 'b', 'egg']
+fig, ax = plt.subplots()
+# ax.plot(x_t, ytruc)
+ax.plot(xtruc, ytruc)
+ax.set_xticks(xloc, xmak)
+plt.show()
 
 
 

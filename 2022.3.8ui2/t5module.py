@@ -10,6 +10,7 @@ import numpy as np
 import datetime
 import socket
 from queue import Queue
+import scipy.stats
 
 import platform
 opsystem = platform.system()  # 'Linux', 'Windows', 'Darwin'
@@ -52,9 +53,10 @@ import StringPickler_py3 as StringPickler
 import style
 from spviewer import t8               ## spectrum animation
 
-jupyterpath = '../2022.2.18jupyter2/'   ## './' in same folder
+jupyterpath = '../2022.2.18jupyter2/' ## './' in same folder
 sys.path.append(jupyterpath)          ## jupyternotebook re-write
-from t6ju import *
+from t6ju import *                    ## droplet test
+from t7tk import *                    ## gas tank
 
 
 ######## module testing  ########################
@@ -105,26 +107,51 @@ def anl_listener():
 
 ## find USB port for equipment: Mac, Windows, Linux
 # Alicat flow control
-port_ali = 'COM4'  ## '/dev/tty.usbserial-A908UXOQ'
+port_ali = 'COM7'  ## '/dev/tty.usbserial-A908UXOQ'
 def alicat_fc():
-    flow_controller1 = FlowController(port=port_ali, address='A')
-    flow_controller2 = FlowController(port=port_ali, address='C')
+    # flow_controller1 = FlowController(port=port_ali, address='A')
+    # flow_controller2 = FlowController(port=port_ali, address='B')
+    # flow_controller3 = FlowController(port=port_ali, address='C')
+
+    # flow_controller4 = FlowController(port=port_ali, address='D')
+    # flow_controller5 = FlowController(port=port_ali, address='E')
+    flow_controller6 = FlowController(port=port_ali, address='F')
+
+    flow_controller7 = FlowController(port=port_ali, address='G')
+    flow_controller8 = FlowController(port=port_ali, address='H')
+    flow_controller9 = FlowController(port=port_ali, address='I')
+
     # print(flow_controller1.get())  ## need get, Bose AE2 soundlink will connect too
     # print(flow_controller2.get())
+    # print(flow_controller3.get())
+    # print(flow_controller4.get())
+    # print(flow_controller5.get())
+    print(flow_controller6.get())
+    print(flow_controller7.get())
+    print(flow_controller8.get())
+    print(flow_controller9.get())
 
-    fc1 = flow_controller1.get()
-    fc2 = flow_controller2.get()
-    print(fc1['pressure'])
-    print(fc1['temperature'])
-    print(fc1['mass_flow'])
-    print(fc1['setpoint'])
-    print(fc2['pressure'])
-    print(fc2['temperature'])
-    print(fc2['mass_flow'])
-    print(fc2['setpoint'])
 
-    flow_controller1.close()
-    flow_controller2.close()
+    # fc1 = flow_controller1.get()
+    # fc2 = flow_controller2.get()
+    # print(fc1['pressure'])
+    # print(fc1['temperature'])
+    # print(fc1['mass_flow'])
+    # print(fc1['setpoint'])
+    # print(fc2['pressure'])
+    # print(fc2['temperature'])
+    # print(fc2['mass_flow'])
+    # print(fc2['setpoint'])
+
+    # flow_controller1.close()
+    # flow_controller2.close()
+    # flow_controller3.close()
+    # flow_controller4.close()
+    # flow_controller5.close()
+    flow_controller6.close()
+    flow_controller7.close()
+    flow_controller8.close()
+    flow_controller9.close()
     print ("connections closed")
 
 # US Solid Scale
@@ -195,18 +222,18 @@ def mt_ethernet():
 
 if __name__ == "__main__":
     ## analyzer backdoor and listener test
-    anl_backdoor()
-    anl_listener()
+    # anl_backdoor()
+    # anl_listener()
 
     ## alicat flow control
-    # alicat_fc()
+    alicat_fc()
 
     ## US Solid scale
     # ussolid()
 
     ## Mettler Toledo scale
     # mt_serial()     #USB-A cable only works on Windows
-    mt_ethernet()   # use ethernet cable to connect
+    # mt_ethernet()   # use ethernet cable to connect
 
 
 
