@@ -19,13 +19,15 @@ Features:
 - PyQt6
 - Tested on Windows, Mac and Linux
 
-Requirement: 
-    there are a long list of files and libraries needed to make it work.
-    Please run 2022.3.8ui2/t5module.py to find out what you need, and install whatever is missing.
+Requirement:
+- There are a long list of files and libraries needed to make it work.
+    Please run calui/t5module.py to find out what you need, and install whatever is missing.
     As long as you have Picarro's internet access, there should be no error.
     MFC control code requires a USB cable connected to computer.
+- Mongo is needed
+- I run most scripts locally on my computer
 
-How to use: run scripe in terminal
+How to use: run scrips in terminal
 - calui: t8ui.py
 - jupyter: jupy.py
 - SAM: t7.py

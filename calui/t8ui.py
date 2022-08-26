@@ -52,7 +52,7 @@ import StringPickler_py3 as StringPickler
 import style
 from spviewer import t8  ## spectrum animation
 
-jupyterpath = '../2022.6.3jupyter3/'  ## './' in same folder
+jupyterpath = '../jupyter/'  ## './' in same folder
 sys.path.append(jupyterpath)  ## jupyternotebook re-write
 from jupy import *  ## calibration, droplet and tank
 
