@@ -141,8 +141,8 @@ def uzmv2(fnap, fnr, epo1, epo3):   # source, destination r drive, start, end ti
             os.mkdir(fn3)
         if not os.path.isdir(fn4):
             os.mkdir(fn4)  
-        copyselec(fn31, fn3, epo1, epo3)     # move unzipped private from temp to broadband or private folder
-        copyselec(fn41, fn4, epo1, epo3) 
+        copyselec(fn31, fn3, epo1+63, epo3)     # move unzipped private from temp to broadband or private folder
+        copyselec(fn41, fn4, epo1+63, epo3)     # start the next minute, to avoid datakey error
         shutil.rmtree(fn31)
         shutil.rmtree(fn41)  
     shutil.rmtree(tempfd)                    # delete temp folder   
@@ -226,11 +226,8 @@ def pickdata(fdpath, folder, start, end, rdf=1, pri=1, com=1, bd=0):  #desinatio
             tc2 = end[8:10]
             tc3 = end[10:12]
 
-            ## epoch_time = datetime.datetime(2021,11,24,8,0).timestamp()
             epo1 = datetime.datetime(int(ta1[:4]),int(ta1[4:6]),int(ta1[6:8]),int(ta2[:2]),int(ta3[:2])).timestamp()  #start
             epo3 = datetime.datetime(int(tc1[:4]),int(tc1[4:6]),int(tc1[6:8]),int(tc2[:2]),int(tc3[:2])).timestamp()  #end
-            #print(epo1)
-            #print(epo3)
             if epo1>=epo3:
                 tag = 0
                 print('Error, start time is after end time.')
@@ -388,22 +385,25 @@ if __name__=='__main__':
     # com=1: pick combo logs; 0: no
     # bd=1 only pick combo files has 'broadband' in their names; bd=0: pick all combo files
 
-    option = 1  # 1: calibration, pick all 3 data. 2: for SAM
+    option = 1  # 1: calibration, read time automatically; 2: pick some data
 
     if option == 1:    # for calibration
         fname = '/mnt/r/crd_G9000/AVXxx/3610-NUV1022/R&D/Calibration'   ## R drive
-        #gas = '3776 - 2-Propanol'
-        #gas = '176 - Acetic Acid'
-        #gas = '180 - Acetone'
-        #gas = '7900 - Propylene glycol methyl ether (PGME)'
-        #gas = '13387 - NMP'
-        #gas = '7344 - Ethyl Lactate'
-        #gas = '1140 - Toluene'
-        #gas = '10914 - hexamethylcyclotrisiloxane (D3)'
-        #gas = '10911 - Dodecamethylcyclohexasiloxane (D6)'
-        gas = '24764 - Hexamethyldisiloxane (HMDSO)'
-        date = '20220824'
-        suffix = 'd3'               ## folder suffix or ''
+        #gas = '7501 - Styrene'
+        #gas = '7929 - m-Xylene'
+        #gas = '7874 - Tetradecamethylcycloheptasiloxane (D7)'
+        #gas = '8857 - Ethyl Acetate'
+        #gas = '7950 - 1,3,5-trichlorobenzene'
+        #gas = '7947 - 1,3,5-trimethylbenzene'
+        #gas = '7239 - 1,2-Dichlorobenzene'
+        #gas = '7247 - 1,2,4-trimethylbenzene'
+        #gas = '4685 - 1,4-dichlorobenzene'
+        #gas = '11169 - Octamethylcyclotetrasiloxane (D4)'
+        #gas = '6895 - 1,2,3-trichlorobenzene'
+        gas = '7410 - acetophenone'
+        #gas = '7967 - cyclohexanone'   
+        date = '20230321'     
+        suffix = ''           ## folder suffix or ''
         fdpath = os.path.join(fname, gas)    #destination
         folder = date + suffix
 
@@ -430,17 +430,36 @@ if __name__=='__main__':
                 print(start, end)
                 pickdata(fdpath, folder, start, end)
                 #pickdata(fdpath, folder, start, end, 0, 1, 0)
-
+                #pickdata(fdpath, folder, start, end, 1, 0, 1)
             except:
                 print('t1.txt or t3.txt format wrong, should by yyyymmdd hh mm separated by return.')    
 
-    elif option == 2: #for more general use, eg. test bed, TD tubes
+    # pick some data: 
+    elif option == 2:
         #fdpath = '/mnt/r/Validation_test_bed'
-        #fdpath = '/mnt/r/Data'
-        fdpath = '/mnt/r/crd_G9000/AVXxx/3610-NUV1022/R&D/Calibration/24764 - Hexamethyldisiloxane (HMDSO)'
-        folder = '20220824'      #destination
-        start = '202208241018'   #yyyymmddhhmm
-        end   = '202208241210'   #yyyymmddhhmm
-        pickdata(fdpath, folder, start, end, rdf=1, pri=1, com=1, bd=0)
+        fdpath = '/mnt/r/crd_G9000/AVXxx/3610-NUV1022/R&D/20230222 - ZA 3000 ppm CO2 TP'
+        #fdpath = '/mnt/r/crd_G9000/AVXxx/3610-NUV1022/R&D/Calibration/24764 - Hexamethyldisiloxane (HMDSO)'
+        #folder = '20220824'      #destination
+        folder = 'CO2b'      #destination
+        start = '202302221444'   #yyyymmddhhmm
+        end   = '202302221545'   #yyyymmddhhmm
+        #pickdata(fdpath, folder, start, end, rdf=1, pri=1, com=1, bd=0)
+        pickdata(fdpath, folder, start, end, rdf=1, pri=0, com=0, bd=0)
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

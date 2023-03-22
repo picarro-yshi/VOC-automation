@@ -1,0 +1,36 @@
+1. use ethernet cable, or
+use your account to log into office wifi (Guest wifi will not work)
+
+2. To mount netdrive, you need this file in the Downloads folder:
+mountSharedDrive-mod.sh
+
+3. in terminal, cd to download folder
+$ cd Downloads/
+$ sudo ./mountSharedDrive-mod.sh
+
+psw: Temp1234
+then type in your user name and password to mount all drives
+
+4. open TigerVNC viewer, type in analyzer IP address to connect
+psw: picarro
+
+5. Use Master FLow Controller GUI
+in another terminal, cd to this folder:
+$ cd '/home/picarro/Documents/2022.12.30MFC'
+$ python mfc1.py
+
+Your Master Flow controller GUI will pop up
+check analyzer IP, alicat ID, USB port and start experiment
+
+
+6. Use simple flow controller (no GUI):
+after adjust your parameters of tc.py
+$ cd '/home/picarro/Documents/MFCp3'
+$ python tc.py
+
+
+
+
+
+
+310595054
